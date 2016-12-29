@@ -1,29 +1,32 @@
 
 
 <div class="parent">
-    <label for="hy">Move stuff between these two containers. Note how the stuff gets inserted near the mouse pointer? Great stuff.</label>
-    <div class="wrapper">
+<!--     <label for="hy">Move stuff between these two containers. Note how the stuff gets inserted near the mouse pointer? Great stuff.</label> -->
+    <div class="wrapper">      
       <div id="left-defaults" class="container">
+<!--        
         <div>You can move these elements between these two containers</div>
         <div>Moving them anywhere else isn't quite possible</div>
         
         <div class="">This is the default use case. You only need to specify the containers you want to use</div>
         <div class="">Anything can be moved around. That includes images, <a href="https://github.com/bevacqua/dragula">links</a>, or any other nested elements. </div>
         <div class="image-thing"><img src="resources/icon.svg" onerror="this.src=&quot;resources/icon.png&quot;" alt="dragula"></div><sub>(You can still click on links, as usual!)</sub>
-<!--         </div></div> -->
+
         <div>There's also the possibility of moving elements around in the same container, changing their position</div>
         
         <div>More interactive use cases lie ahead</div>
         <div>Moving <code>&lt;input/&gt;</code> elements works just fine. You can still focus them, too. <input placeholder="See?"></div>
         <div>Make sure to check out the <a href="https://github.com/bevacqua/dragula#readme">documentation on GitHub!</a></div>
+-->        
       </div>
-      <div id="right-defaults" class="container onlySingle">
-        
+      <div id="center-area">        
+        <div id="answer1" class="container onlySingle">  </div> 
+<!--         <div class="whitespace"></div>  -->
+        <div id="answer2" class="container onlySingle">  </div> 
       </div>
+      <div id="results-area"></div>
     </div>
-    
   </div>
-
 <link href="dragula.css" rel="stylesheet" type="text/css">
 <!-- https://raw.githubusercontent.com/bevacqua/dragula/master/example/example.css -->
 <link href="example.css" rel="stylesheet" type="text/css">
@@ -36,3 +39,34 @@
 
 <script src="example.min.js"></script> 
 <!-- <script src="https://bevacqua.github.io/dragula/example/example.min.js"></script> -->
+
+<script type="text/javascript">
+  var org1 = "Министерство информации ДНР";
+  var org2 = "Оплот ТВ";
+  var data = [
+    { name:  "Майя Пирогова",    org: org1, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Виктор Луковский", org: org1, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Алина Мандрыка",   org: org2, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Владислав Левчук", org: org2, photo: "https://avatars2.githubusercontent.com/u/99" },
+  ];
+  
+  for (var i=0; i<data.length; ++i) {
+    var p = data[i];
+    
+    var ans = jQuery("<div class='person' id='person"+ i + "'" + 
+                     " data-org='" + p.org + "'" +
+                     "/>");
+    //ans.data("org", "p.org");
+    jQuery("<img class='avatar' src='" + p.photo + i + "'/>").appendTo(ans);
+//     jQuery('<div/>', {
+//        // id: 'foo',
+//         href: 'http://google.com',
+//         title: 'Become a Googler',
+//         rel: 'external',
+//         text: 'Go to Google!'
+//     }).appendTo('#right2');
+    jQuery("<div class='nameContainer'><b>" + p.name + "</b></div>").appendTo(ans);
+    
+    ans.appendTo('#left-defaults');
+  }
+</script>
