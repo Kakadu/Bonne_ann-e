@@ -41,6 +41,8 @@
 <!-- <script src="https://bevacqua.github.io/dragula/example/example.min.js"></script> -->
 
 <script type="text/javascript">
+  
+  
   var org1 = "Министерство информации ДНР";
   var org2 = "Оплот ТВ";
   var data = [
@@ -50,10 +52,30 @@
     { name:  "Владислав Левчук", org: org2, photo: "https://avatars2.githubusercontent.com/u/99" },
   ];
   
+  var solvedCount = 0;
+  var checkLoyalty = function(a1,a2) {
+    var a = a1.firstChild.nextSibling;
+    var b = a2.firstChild.nextSibling;
+    console.log("QQQQ", a, a.dataset.org);
+    console.log("____", b, a.dataset.org);
+    if (a.dataset.org === b.dataset.org) {
+      // do detach?
+      //console.log( $("#results-area") );
+      $("#results-area").append(a);
+      $("#results-area").append(b);
+      solvedCount += 2;
+      
+      if (solvedCount == data.length) {
+        alert("Да, это победа");
+      }
+    }
+  }
+
+  
   for (var i=0; i<data.length; ++i) {
     var p = data[i];
     
-    var ans = jQuery("<div class='person' id='person"+ i + "'" + 
+    var ans = jQuery("<div class='person img-circle' id='person"+ i + "'" + 
                      " data-org='" + p.org + "'" +
                      "/>");
     //ans.data("org", "p.org");

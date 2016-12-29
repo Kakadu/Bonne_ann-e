@@ -1,0 +1,111 @@
+
+<link href="sel.css" rel="stylesheet" type="text/css">
+
+<div class="parent">
+<!--     <label for="hy">Move stuff between these two containers. Note how the stuff gets inserted near the mouse pointer? Great stuff.</label> -->
+    <div class="wrapper">      
+      <!--
+      <div id="left-defaults" class="container">
+      </div>
+      <div id="center-area">        
+        <div id="answer1" class="container onlySingle">  </div> 
+        <div id="answer2" class="container onlySingle">  </div> 
+      </div>
+      <div id="results-area"></div>
+-->
+    </div>
+  </div>
+<link href="dragula.css" rel="stylesheet" type="text/css">
+<!-- https://raw.githubusercontent.com/bevacqua/dragula/master/example/example.css -->
+<link href="example.css" rel="stylesheet" type="text/css">
+
+<script src="jquery-3.1.1.js"></script>
+<!-- <script src="jquery.crossevent.js"></script> -->
+<!-- <script src="dragula.js"></script> -->
+<!-- <script src="https://bevacqua.github.io/dragula/dist/dragula.js"></script> -->
+
+
+<!-- <script src="example.min.js"></script>  -->
+<!-- <script src="https://bevacqua.github.io/dragula/example/example.min.js"></script> -->
+
+
+
+<script type="text/javascript">
+  
+  
+  var org1 = "Министерство информации ДНР";
+  var org2 = "Первый республиканский";
+  var org3 = "ТК Юнион";
+  var org4 = "Оплот ТВ";
+  var org5 = "Радио Комета";
+  var data = [
+    { name:  "Майя Пирогова",    org: org1, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Мария Пирогова",   org: org1, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Виктор Луковский",    org: org1, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Игорь Пушкин",    org: org1, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Влада Мощная",    org: org2, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Александр Пефтиев",    org: org2, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Виктор Петренко",    org: org2, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Богдан Бубнов",    org: org2, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Алена Морозова",    org: org3, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Марина Лысенко",    org: org3, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Алина Мандрыка",    org: org3, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Владислав Левчук",    org: org3, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Александр Кузьмин",    org: org4, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Рашит Романов",    org: org4, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Анастасия Исаева",    org: org4, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Артем Светличный",    org: org4, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Елена Шинкаренко",    org: org4, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Владимир Абдуллаев",    org: org4, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Алена Кочкина",    org: org5, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Виктория Клепикова",    org: org5, photo: "https://avatars2.githubusercontent.com/u/99" },
+
+  ];
+  
+  var solvedCount = 0;
+  var checkLoyalty = function(a1,a2) {
+    var all = $(".preview.selected");
+    if (all.length != 2)
+      return;
+    var a = $(all[0]), b = $(all[1]);
+    console.log(all, a, b, a.data("org"), b.data("org"));
+    if (a.hasClass('selected') && b.hasClass('selected') ) {
+      if (a.data("org") === b.data("org") ) {
+        console.log("remove")
+        a.remove();
+        b.remove();     
+        solvedCount += 2
+
+        if (solvedCount == data.length)       {
+          alert("Да, это победа");
+        }
+      } else {
+        a.removeClass("selected");
+        b.removeClass("selected");
+      }
+    }
+  }
+
+  
+  for (var i=0; i<data.length; ++i) {
+    var p = data[i];
+    
+    var ans = $("<img class='preview img-circle' src='" + p.photo + i + "'" +
+                " data-org='" + p.org + "'" +
+                "/>");
+               
+//     jQuery('<div/>', {
+//        // id: 'foo',
+//         href: 'http://google.com',
+//         title: 'Become a Googler',
+//         rel: 'external',
+//         text: 'Go to Google!'
+//     }).appendTo('#right2');
+
+    ans.click(function(e) {
+      $(this).toggleClass("selected");
+      checkLoyalty();
+    });
+    ans.appendTo('.wrapper');
+  }
+</script>

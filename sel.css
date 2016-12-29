@@ -1,0 +1,16 @@
+.preview {
+  width:  150px;
+  height: 150px;
+  margin: 2px;
+  padding: 2px;
+/*   display: inline-block; */
+  float: left;
+}
+.preview.selected {
+  border: 3px solid red;
+/*   border-color: green; */
+}  
+
+.img-circle {
+    border-radius: 50%;
+}
