@@ -14,10 +14,11 @@
       <div id="results-area"></div>
 -->
     </div>
+    <div class="message-area" />
   </div>
-<link href="dragula.css" rel="stylesheet" type="text/css">
+<!-- <link href="dragula.css" rel="stylesheet" type="text/css"> -->
 <!-- https://raw.githubusercontent.com/bevacqua/dragula/master/example/example.css -->
-<link href="example.css" rel="stylesheet" type="text/css">
+<!-- <link href="example.css" rel="stylesheet" type="text/css"> -->
 
 <script src="jquery-3.1.1.js"></script>
 <!-- <script src="jquery.crossevent.js"></script> -->
@@ -31,36 +32,57 @@
 
 
 <script type="text/javascript">
-  
+  var msg = function(msg) {
+    $(".message-area").html(msg);
+  };
   
   var org1 = "Министерство информации ДНР";
   var org2 = "Первый республиканский";
   var org3 = "ТК Юнион";
   var org4 = "Оплот ТВ";
   var org5 = "Радио Комета";
+  var org6 = "Новороссия ТВ";
+  var org7 = "ОО Молодая Республика";
+  var org8 = "ОД Донецкая Республика";
+  
   var data = [
-    { name:  "Майя Пирогова",    org: org1, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Мария Пирогова",   org: org1, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Виктор Луковский",    org: org1, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Игорь Пушкин",    org: org1, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Влада Мощная",    org: org2, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Александр Пефтиев",    org: org2, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Виктор Петренко",    org: org2, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Богдан Бубнов",    org: org2, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Алена Морозова",    org: org3, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Марина Лысенко",    org: org3, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Алина Мандрыка",    org: org3, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Владислав Левчук",    org: org3, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Александр Кузьмин",    org: org4, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Рашит Романов",    org: org4, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Анастасия Исаева",    org: org4, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Артем Светличный",    org: org4, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Елена Шинкаренко",    org: org4, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Владимир Абдуллаев",    org: org4, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Алена Кочкина",    org: org5, photo: "https://avatars2.githubusercontent.com/u/99" },
-    { name:  "Виктория Клепикова",    org: org5, photo: "https://avatars2.githubusercontent.com/u/99" },
+    { name:  "Майя Пирогова",    org: org1, photo: "http://marki-dnr.ru/marta/1.jpg" },
+    { name:  "Мария Пирогова",   org: org1, photo: "http://marki-dnr.ru/marta/2.jpg" },
+    { name:  "Виктор Луковский",    org: org1, photo: "http://marki-dnr.ru/marta/3.jpg" },
+    { name:  "Игорь Пушкин",    org: org1, photo: "http://marki-dnr.ru/marta/4.jpg" },
+    { name:  "Влада Мощная",    org: org2, photo: "http://marki-dnr.ru/marta/5.jpg" },
+    { name:  "Александр Пефтиев",    org: org2, photo: "http://marki-dnr.ru/marta/6.jpg" },
+    { name:  "Виктор Петренко",    org: org2, photo: "http://marki-dnr.ru/marta/7.jpg" },
+    { name:  "Богдан Бубнов",    org: org2, photo: "http://marki-dnr.ru/marta/8.jpg" },
+    { name:  "Алена Морозова",    org: org3, photo: "http://marki-dnr.ru/marta/9.jpg" },
+    { name:  "Марина Лысенко",    org: org3, photo: "http://marki-dnr.ru/marta/10.jpg" },
+    { name:  "Алина Мандрыка",    org: org3, photo: "http://marki-dnr.ru/marta/11.jpg" },
+    { name:  "Владислав Левчук",    org: org3, photo: "http://marki-dnr.ru/marta/12.jpg" },
+    { name:  "Александр Кузьмин",    org: org4, photo: "http://marki-dnr.ru/marta/13.jpg" },
+    { name:  "Рашит Романов",    org: org4, photo: "http://marki-dnr.ru/marta/14.jpg" },
+    { name:  "Анастасия Исаева",    org: org4, photo: "http://marki-dnr.ru/marta/15.jpg" },
+    { name:  "Артем Светличный",    org: org4, photo: "http://marki-dnr.ru/marta/16.jpg" },
+    { name:  "Елена Шинкаренко",    org: org4, photo: "http://marki-dnr.ru/marta/17.jpg" },
+    { name:  "Владимир Абдуллаев",    org: org4, photo: "http://marki-dnr.ru/marta/18.jpg" },
+    { name:  "Алена Кочкина",    org: org5, photo: "http://marki-dnr.ru/marta/19.jpg" },
+    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
+    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
+    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
+    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
+    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
+    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
+    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
+    
 
   ];
+  function randomShuffle(arr) {
+    arr.sort(function(a, b) {
+        return Math.random() - 0.5
+    });
+  }
+  randomShuffle(data);
+  
+  
   
   var solvedCount = 0;
   var checkLoyalty = function(a1,a2) {
@@ -72,6 +94,7 @@
     if (a.hasClass('selected') && b.hasClass('selected') ) {
       if (a.data("org") === b.data("org") ) {
         console.log("remove")
+        msg("Да," + a.data("name")+ " и "+ b.data("name") + " работают в " + b.data("org") );
         a.remove();
         b.remove();     
         solvedCount += 2
@@ -82,6 +105,7 @@
       } else {
         a.removeClass("selected");
         b.removeClass("selected");
+        msg("Нет, они даже не знают друг друга");
       }
     }
   }
@@ -90,8 +114,9 @@
   for (var i=0; i<data.length; ++i) {
     var p = data[i];
     
-    var ans = $("<img class='preview img-circle' src='" + p.photo + i + "'" +
-                " data-org='" + p.org + "'" +
+    var ans = $("<img class='preview img-circle' src='" + p.photo + "'" +
+                " data-org='"  + p.org  + "'" +
+                " data-name='" + p.name + "'" +
                 "/>");
                
 //     jQuery('<div/>', {

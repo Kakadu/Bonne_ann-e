@@ -14,3 +14,70 @@
 .img-circle {
     border-radius: 50%;
 }
+.message-area {
+  
+}
+
+.parent {
+  background-color: rgba(255, 255, 255, 0.2);
+  margin:  5px 0;
+  padding: 20px;
+}
+.wrapper {
+  display: table;
+  width: 100%;
+  height: 90%;
+}
+.message-area {
+	height: 10%;
+	width:  100%;
+	display: block;
+}
+
+body {
+  background-color: #942A57;
+  margin: 0 auto;
+/*   max-width: 760px; */
+  min-width: 200px;
+  width: 80%;
+  height: 90%;
+  min-height: 300px;
+}
+
+html, body {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+body, input, button {
+  font-family: Monaco, Georgia, Helvetica;
+  font-size: 17px;
+  color: #ecf0f1;
+}
+
+h1 {
+  text-align: center;
+  background-color: #AC5C7E;
+  margin-top: 20px;
+  margin-bottom: 0;
+  padding: 10px;
+}
+
+h3 {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-bottom: 5px solid #A13462;
+  text-align: center;
+  padding: 10px;
+}
+
+h3 div {
+  margin-bottom: 10px;
+}
+
