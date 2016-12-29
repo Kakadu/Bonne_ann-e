@@ -1,9 +1,13 @@
 
 <link href="sel.css" rel="stylesheet" type="text/css">
-
+<audio id="popAudio">
+  <source src="http://www.pachd.com/sfx/pop2.wav" type="audio/wav">
+    Your browser does not support the audio element.
+</audio>
 <div class="parent">
 <!--     <label for="hy">Move stuff between these two containers. Note how the stuff gets inserted near the mouse pointer? Great stuff.</label> -->
-    <div class="wrapper">      
+  <div class="message-area" >Найдите людей, работающих в одной организации</div>
+  <div class="wrapper"></div>
       <!--
       <div id="left-defaults" class="container">
       </div>
@@ -13,22 +17,11 @@
       </div>
       <div id="results-area"></div>
 -->
-    </div>
-    <div class="message-area" />
+    
+    
   </div>
-<!-- <link href="dragula.css" rel="stylesheet" type="text/css"> -->
-<!-- https://raw.githubusercontent.com/bevacqua/dragula/master/example/example.css -->
-<!-- <link href="example.css" rel="stylesheet" type="text/css"> -->
 
 <script src="jquery-3.1.1.js"></script>
-<!-- <script src="jquery.crossevent.js"></script> -->
-<!-- <script src="dragula.js"></script> -->
-<!-- <script src="https://bevacqua.github.io/dragula/dist/dragula.js"></script> -->
-
-
-<!-- <script src="example.min.js"></script>  -->
-<!-- <script src="https://bevacqua.github.io/dragula/example/example.min.js"></script> -->
-
 
 
 <script type="text/javascript">
@@ -36,6 +29,8 @@
     $(".message-area").html(msg);
   };
   
+  var solvedCount = 0;  
+  var errorsCounter = 0;
   var org1 = "Министерство информации ДНР";
   var org2 = "Первый республиканский";
   var org3 = "ТК Юнион";
@@ -46,91 +41,105 @@
   var org8 = "ОД Донецкая Республика";
   
   var data = [
-    { name:  "Майя Пирогова",    org: org1, photo: "http://marki-dnr.ru/marta/1.jpg" },
-    { name:  "Мария Пирогова",   org: org1, photo: "http://marki-dnr.ru/marta/2.jpg" },
-    { name:  "Виктор Луковский",    org: org1, photo: "http://marki-dnr.ru/marta/3.jpg" },
-    { name:  "Игорь Пушкин",    org: org1, photo: "http://marki-dnr.ru/marta/4.jpg" },
-    { name:  "Влада Мощная",    org: org2, photo: "http://marki-dnr.ru/marta/5.jpg" },
-    { name:  "Александр Пефтиев",    org: org2, photo: "http://marki-dnr.ru/marta/6.jpg" },
-    { name:  "Виктор Петренко",    org: org2, photo: "http://marki-dnr.ru/marta/7.jpg" },
-    { name:  "Богдан Бубнов",    org: org2, photo: "http://marki-dnr.ru/marta/8.jpg" },
-    { name:  "Алена Морозова",    org: org3, photo: "http://marki-dnr.ru/marta/9.jpg" },
-    { name:  "Марина Лысенко",    org: org3, photo: "http://marki-dnr.ru/marta/10.jpg" },
-    { name:  "Алина Мандрыка",    org: org3, photo: "http://marki-dnr.ru/marta/11.jpg" },
-    { name:  "Владислав Левчук",    org: org3, photo: "http://marki-dnr.ru/marta/12.jpg" },
-    { name:  "Александр Кузьмин",    org: org4, photo: "http://marki-dnr.ru/marta/13.jpg" },
-    { name:  "Рашит Романов",    org: org4, photo: "http://marki-dnr.ru/marta/14.jpg" },
-    { name:  "Анастасия Исаева",    org: org4, photo: "http://marki-dnr.ru/marta/15.jpg" },
-    { name:  "Артем Светличный",    org: org4, photo: "http://marki-dnr.ru/marta/16.jpg" },
-    { name:  "Елена Шинкаренко",    org: org4, photo: "http://marki-dnr.ru/marta/17.jpg" },
-    { name:  "Владимир Абдуллаев",    org: org4, photo: "http://marki-dnr.ru/marta/18.jpg" },
-    { name:  "Алена Кочкина",    org: org5, photo: "http://marki-dnr.ru/marta/19.jpg" },
-    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
-    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
-    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
-    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
-    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
-    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
-    { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
-    
-
+//     { name:  "Майя Пирогова",    org: org1, photo: "http://marki-dnr.ru/marta/1.jpg" },
+//     { name:  "Мария Пирогова",   org: org1, photo: "http://marki-dnr.ru/marta/2.jpg" },
+//     { name:  "Виктор Луковский",    org: org1, photo: "http://marki-dnr.ru/marta/3.jpg" },
+//     { name:  "Игорь Пушкин",    org: org1, photo: "http://marki-dnr.ru/marta/4.jpg" },
+//     { name:  "Влада Мощная",    org: org2, photo: "http://marki-dnr.ru/marta/5.jpg" },
+//     { name:  "Александр Пефтиев",    org: org2, photo: "http://marki-dnr.ru/marta/6.jpg" },
+//     { name:  "Виктор Петренко",    org: org2, photo: "http://marki-dnr.ru/marta/7.jpg" },
+//     { name:  "Богдан Бубнов",    org: org2, photo: "http://marki-dnr.ru/marta/8.jpg" },
+//     { name:  "Алена Морозова",    org: org3, photo: "http://marki-dnr.ru/marta/9.jpg" },
+//     { name:  "Марина Лысенко",    org: org3, photo: "http://marki-dnr.ru/marta/10.jpg" },
+//     { name:  "Алина Мандрыка",    org: org3, photo: "http://marki-dnr.ru/marta/11.jpg" },
+//     { name:  "Владислав Левчук",    org: org3, photo: "http://marki-dnr.ru/marta/12.jpg" },
+//     { name:  "Александр Кузьмин",    org: org4, photo: "http://marki-dnr.ru/marta/13.jpg" },
+//     { name:  "Рашит Романов",    org: org4, photo: "http://marki-dnr.ru/marta/14.jpg" },
+//     { name:  "Анастасия Исаева",    org: org4, photo: "http://marki-dnr.ru/marta/15.jpg" },
+//     { name:  "Артем Светличный",    org: org4, photo: "http://marki-dnr.ru/marta/16.jpg" },
+//     { name:  "Елена Шинкаренко",    org: org4, photo: "http://marki-dnr.ru/marta/17.jpg" },
+//     { name:  "Владимир Абдуллаев",    org: org4, photo: "http://marki-dnr.ru/marta/18.jpg" },
+//     { name:  "Алена Кочкина",    org: org5, photo: "http://marki-dnr.ru/marta/19.jpg" },
+//     { name:  "Виктория Клепикова",    org: org5, photo: "http://marki-dnr.ru/marta/20.jpg" },
+//     { name:  "Дарья Черничная",    org: org6, photo: "http://marki-dnr.ru/marta/21.jpg" },
+//     { name:  "Дмитрий Зиньковский",    org: org6, photo: "http://marki-dnr.ru/marta/22.jpg" },
+    { name:  "Никита Киосев",    org: org7, photo: "http://marki-dnr.ru/marta/23.jpg" },
+    { name:  "Александра Тестова",    org: org7, photo: "http://marki-dnr.ru/marta/24.jpg" },
+    { name:  "Андрей Крамар",    org: org8, photo: "http://marki-dnr.ru/marta/25.jpg" },
+    { name:  "Елена Кузнецова",    org: org8, photo: "http://marki-dnr.ru/marta/26.jpg" },
   ];
+  
+  function checkErrors (ec) {
+    if (ec == 0) return ("Вы ни разу не ошиблись. Елена Николаевна, Вы ли это?)");
+    if (ec < 3)  return ("Вы сделали "+ec+ " ошибки. Здравствуйте, коллега.");
+    if (ec < 5)  return ("Вы допустили "+ec+ " ошибки. Неплохо");
+    return ("Количество ошибок: "+ec+ ". Тут и добавить нечего");
+  }
+    
   function randomShuffle(arr) {
     arr.sort(function(a, b) {
         return Math.random() - 0.5
     });
   }
-  randomShuffle(data);
+  function playRemoveSound() { $("#popAudio")[0].play(); }
   
-  
-  
-  var solvedCount = 0;
   var checkLoyalty = function(a1,a2) {
     var all = $(".preview.selected");
     if (all.length != 2)
       return;
     var a = $(all[0]), b = $(all[1]);
-    console.log(all, a, b, a.data("org"), b.data("org"));
+    //console.log(all, a, b, a.data("org"), b.data("org"));
     if (a.hasClass('selected') && b.hasClass('selected') ) {
       if (a.data("org") === b.data("org") ) {
-        console.log("remove")
-        msg("Да," + a.data("name")+ " и "+ b.data("name") + " работают в " + b.data("org") );
-        a.remove();
-        b.remove();     
-        solvedCount += 2
+        //console.log("remove")
+        msg("Да, " + a.data("name")+ " и " + b.data("name") + " работают в " + b.data("org") );
+        playRemoveSound();
+        a.fadeOut(300, function(){ $(this).remove();});
+        b.fadeOut(300, function(){ $(this).remove();});
+        //a.remove();
+        //b.remove();     
+        solvedCount += 2;
+
+
 
         if (solvedCount == data.length)       {
-          alert("Да, это победа");
+          var endGameMessage = checkErrors (errorsCounter);
+          alert("Да, это победа!"+ endGameMessage);
         }
       } else {
         a.removeClass("selected");
         b.removeClass("selected");
         msg("Нет, они даже не знают друг друга");
+        errorsCounter += 1;
       }
     }
   }
 
-  
-  for (var i=0; i<data.length; ++i) {
-    var p = data[i];
-    
-    var ans = $("<img class='preview img-circle' src='" + p.photo + "'" +
-                " data-org='"  + p.org  + "'" +
-                " data-name='" + p.name + "'" +
-                "/>");
-               
-//     jQuery('<div/>', {
-//        // id: 'foo',
-//         href: 'http://google.com',
-//         title: 'Become a Googler',
-//         rel: 'external',
-//         text: 'Go to Google!'
-//     }).appendTo('#right2');
+  var init = function() {
+    errorsCounter = solvedCount = 0;
+    randomShuffle(data);
+    for (var i=0; i<data.length; ++i) {
+      var p = data[i];
 
-    ans.click(function(e) {
-      $(this).toggleClass("selected");
-      checkLoyalty();
-    });
-    ans.appendTo('.wrapper');
-  }
+      var ans = $("<img class='preview img-circle' src='" + p.photo + "'" +
+                  " data-org='"  + p.org  + "'" +
+                  " data-name='" + p.name + "'" +
+                  "/>");
+
+  //     jQuery('<div/>', {
+  //        // id: 'foo',
+  //         href: 'http://google.com',
+  //         title: 'Become a Googler',
+  //         rel: 'external',
+  //         text: 'Go to Google!'
+  //     }).appendTo('#right2');
+
+      ans.click(function(e) {
+        $(this).toggleClass("selected");
+        checkLoyalty();
+      });
+      ans.appendTo('.wrapper');
+    }
+  };
+  init();
 </script>
